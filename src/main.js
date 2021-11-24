@@ -1,4 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+// import './index.css'
+import { store } from './store.js'
 
-createApp(App).mount('#app')
+// routerの情報を読み込んでいる
+var app = createApp(App)
+app.use(store)
+app.mount('#app')

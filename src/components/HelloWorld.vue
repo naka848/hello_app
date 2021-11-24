@@ -1,30 +1,29 @@
 <template>
-    <div className="alert alert-primary">
-        <h1>{{ title }}</h1>
-        <p ref="msg">{{ message }}</p>
-        <button class="btn btn-primary" v-on:click="DoAction">Click</button>
+  <div class="alert alert-primary">
+    <h1>{{ data.title }}</h1>
+    <p class="mt-3 h5">{{ $store.state.message }}</p>
+    <hr>
+    <div class="btn btn-secondary"
+      @click.exact="$store.commit('count')"
+      @click.ctrl="$store.commit('reset')">
+      <a class="h5">clicked: {{ $store.state.counter }}</a>
     </div>
+  </div>
 </template>
 
 <script>
+import { reactive } from 'vue'
+
 export default {
-    name: 'HelloWorld',
-    data() {
-        return {
-            title: 'HelloWorld',
-            message: 'This is sample message.',
-        }
-    },
-    mounted(){
-        this.counter = 0
-    },
-    methods: {
-        DoAction() {
-            this.counter++
-            this.$refs.msg.innerHTML += '<h6>counted: ' + this.counter + '<h6>'
-        }
-    }
-}
+  setup() {
+    //値の定義
+    const data = reactive({
+      title: 'Vuex',
+    });
+
+    return {
+      data,
+    };
+  },
+};
 </script>
-
-
